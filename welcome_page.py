@@ -39,18 +39,21 @@ pygame.display.set_caption('Welcome Page')
 # set the window to full screen
 window_surface = pygame.display.set_mode(flags=pygame.FULLSCREEN)
 # Load image used for the background, make sure image is located in the same folder, or else replace with the file path
-background = pygame.image.load('welcome_logo.png')
-background = pygame.transform.scale(background, (height, height))
-bg_height = background.get_height()
-bg_width = background.get_width()
+logo = pygame.image.load('welcome_logo.png')
+logo = pygame.transform.scale(logo, (height, height))
+bg_height = logo.get_height()
+bg_width = logo.get_width()
 
-background.convert()
+logo.convert()
+# create a white background to remove black bars
+background = pygame.Surface((width, height))
+background.fill(pygame.Color('#FFFFFF'))
 
 # define button size
 wash_bt_width = 1000
 wash_bt_height = 100
-close_bt_width = 300
-close_bt_height = 100
+close_bt_width = 60
+close_bt_height = 60
 
 # Edit the font size in the theme.json file to change the font size of the buttons
 
@@ -62,7 +65,7 @@ wash_button = pygame_gui.elements.UIButton(
     text='Click Here to Start Wash',
     manager=manager)
 close_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((50, 50), (close_bt_width, close_bt_height)),
-                                            text='Close',
+                                            text='x',
                                             manager=manager)
 clock = pygame.time.Clock()
 is_running = True
@@ -87,8 +90,8 @@ while is_running:
         manager.process_events(event)
 
     manager.update(time_delta)
-
-    window_surface.blit(background, ((width / 2) - (bg_width / 2), (height / 2) - (bg_height / 2)))
+    window_surface.blit(background, (0, 0))
+    window_surface.blit(logo, ((width / 2) - (bg_width / 2), (height / 2) - (bg_height / 2)))
     manager.draw_ui(window_surface)
 
     pygame.display.update()
