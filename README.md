@@ -1,1 +1,1 @@
-# welcome_package
+Okay, here's a zip file with all the code and files necessary to run. Just unzip it and make sure that all of the files stay in the same folder. You can move them all out on to the desktop or on to a different folder, they just have to stay together. If the code gives an error, let me know. I wasn't able to test a certain module with the Pi monitor, but I wrote a quick fix into the code so if that goes wrong let me know and I'll help out
